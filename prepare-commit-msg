@@ -20,14 +20,6 @@
 # Start with project-specific hook.
 hooks_start prepare-commit-msg "$@"
 
-# Invoke the Gerrit Change-Id hook here for "git merge" because
-# it does not run the normal commit-msg hook.
-hooks_GerritId=$(git config --get hooks.GerritId)
-case "$hooks_GerritId,$2,$3" in
-	true,merge,) "$HOOKS_DIR/gerrit/commit-msg" "$1" ;;
-	*) ;;
-esac
-
 #-----------------------------------------------------------------------------
 # Chain to project-specific hook.
 hooks_chain prepare-commit-msg "$@"
